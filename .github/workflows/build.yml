@@ -51,11 +51,13 @@ jobs:
       - name: Build .deb
         run: |
           dpkg-deb --build td-libvips-dev_${{env.libvipsVersion}}
-          ls -lah td-libvips-dev_${{env.libvipsVersion}}.deb
+          mkdir -p dist
+          mv td-libvips-dev_${{env.libvipsVersion}}.deb dist
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           REPOSITORY_NAME: tada-team/tada-team.github.io
-          FOLDER: ppa
+          TARGET_FOLDER: ppa
+          FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
