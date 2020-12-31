@@ -53,6 +53,7 @@ jobs:
           dpkg-deb --build td-libvips-dev_${{env.libvipsVersion}}
           mkdir -p dist
           mv td-libvips-dev_${{env.libvipsVersion}}.deb dist
+          ls -lah dist
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
