@@ -38,18 +38,17 @@ jobs:
             wget
       - name: Prepare template
         run: |
-          mkdir -p libvips/td-libvips-dev_${{env.libvipsVersion}}
-          cp -rv libvips/DEBIAN.template libvips/td-libvips-dev_${{env.libvipsVersion}}/DEBIAN
-          sed -i "s/%LIBVPS_VERSION%/${{env.libvipsVersion}}/g" libvips/td-libvips-dev_${{env.libvipsVersion}}/DEBIAN/*
+          mkdir -p td-libvips-dev_${{env.libvipsVersion}}
+          cp -rv DEBIAN.template libvips/td-libvips-dev_${{env.libvipsVersion}}/DEBIAN
+          sed -i "s/%LIBVPS_VERSION%/${{env.libvipsVersion}}/g" td-libvips-dev_${{env.libvipsVersion}}/DEBIAN/*
       - name: Download lib
         run: |
-          mkdir -p libvips/td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
-          cd libvips/td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
+          mkdir -p td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
+          cd td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
           curl -L -o vips-${{env.libvipsVersion}}.tar.gz https://github.com/libvips/libvips/releases/download/v${{env.libvipsVersion}}/vips-${{env.libvipsVersion}}.tar.gz
           tar zvxf vips-${{env.libvipsVersion}}.tar.gz
           rm vips-${{env.libvipsVersion}}.tar.gz
       - name: Build .deb
         run: |
-          cd libvips
           dpkg-deb --build td-libvips-dev_${{env.libvipsVersion}}
           ls -lah td-libvips-dev_${{env.libvipsVersion}}.deb
