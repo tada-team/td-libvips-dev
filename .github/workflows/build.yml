@@ -52,3 +52,10 @@ jobs:
         run: |
           dpkg-deb --build td-libvips-dev_${{env.libvipsVersion}}
           ls -lah td-libvips-dev_${{env.libvipsVersion}}.deb
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: main
+          FOLDER: ppa
+          
