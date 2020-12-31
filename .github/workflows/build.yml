@@ -62,7 +62,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           REPOSITORY_NAME: tada-team/tada-team.github.io
-          TARGET_FOLDER: ppa
+          TARGET_FOLDER: td-libvips-dev-dist
           FOLDER: dist
           SSH: true
           BRANCH: main
