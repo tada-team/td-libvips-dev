@@ -55,7 +55,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
+          REPOSITORY_NAME: tada-team/tada-team.github.io
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
           FOLDER: ppa
-          
