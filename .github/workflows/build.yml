@@ -39,6 +39,7 @@ jobs:
       - name: Try install
         working-directory: dist
         run: |
+          sudo apt-get install -y cmake giflib-tools gobject-introspection gtk-doc-tools libgif-dev libgsf-1-dev libpoppler-glib-dev libwebp-dev
           sudo dpkg -i td-libvips-dev_${{env.version}}.deb
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.4.1
