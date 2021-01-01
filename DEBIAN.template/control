@@ -1,5 +1,5 @@
 Package: td-libvips-dev
-Version: %LIBVPS_VERSION%
+Version: %VERSION%
 Maintainer: Tada.team <info@tada.team>
 Architecture: all
 Section: devel

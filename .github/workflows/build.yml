@@ -2,7 +2,7 @@
 
 name: build
 env:
-  libvipsVersion: '8.10.5'
+  version: '8.10.5'
 
 on:
   push:
@@ -40,21 +40,21 @@ jobs:
             wget
       - name: Prepare template
         run: |
-          mkdir -p td-libvips-dev_${{env.libvipsVersion}}
-          cp -rv DEBIAN.template td-libvips-dev_${{env.libvipsVersion}}/DEBIAN
-          sed -i "s/%LIBVPS_VERSION%/${{env.libvipsVersion}}/g" td-libvips-dev_${{env.libvipsVersion}}/DEBIAN/*
+          mkdir -p td-libvips-dev_${{env.version}}
+          cp -rv DEBIAN.template td-libvips-dev_${{env.version}}/DEBIAN
+          sed -i "s/%VERSION%/${{env.version}}/g" td-libvips-dev_${{env.version}}/DEBIAN/*
       - name: Download lib
         run: |
-          mkdir -p td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
-          cd td-libvips-dev_${{env.libvipsVersion}}/usr/local/src
-          curl -L -o vips-${{env.libvipsVersion}}.tar.gz https://github.com/libvips/libvips/releases/download/v${{env.libvipsVersion}}/vips-${{env.libvipsVersion}}.tar.gz
-          tar zvxf vips-${{env.libvipsVersion}}.tar.gz
-          rm vips-${{env.libvipsVersion}}.tar.gz
+          mkdir -p td-libvips-dev_${{env.version}}/usr/local/src
+          cd td-libvips-dev_${{env.version}}/usr/local/src
+          curl -L -o vips-${{env.version}}.tar.gz https://github.com/libvips/libvips/releases/download/v${{env.version}}/vips-${{env.version}}.tar.gz
+          tar zvxf vips-${{env.version}}.tar.gz
+          rm vips-${{env.version}}.tar.gz
       - name: Build .deb
         run: |
-          dpkg-deb --build td-libvips-dev_${{env.libvipsVersion}}
+          dpkg-deb --build td-libvips-dev_${{env.version}}
           mkdir -p dist
-          mv td-libvips-dev_${{env.libvipsVersion}}.deb dist
+          mv td-libvips-dev_${{env.version}}.deb dist
           ls -lah dist
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.4.1

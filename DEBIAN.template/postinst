@@ -2,7 +2,7 @@
 set -ex
 
 ls -lah /usr/local/src/
-cd /usr/local/src/vips-%LIBVPS_VERSION%
+cd /usr/local/src/vips-%VERSION%
 
 CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" ./configure \
     --disable-debug \
