@@ -1,3 +1,5 @@
+# based on https://raw.githubusercontent.com/h2non/bimg/master/preinstall.sh
+
 name: build
 env:
   libvipsVersion: '8.10.5'
