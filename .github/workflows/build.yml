@@ -35,7 +35,6 @@ jobs:
           dpkg-deb --build td-libvips-dev_${{env.version}}
           mkdir -p dist
           mv td-libvips-dev_${{env.version}}.deb dist
-          ls -lah dist
       - name: Try install
         working-directory: dist
         run: |
