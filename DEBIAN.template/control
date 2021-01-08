@@ -1,7 +1,7 @@
 Package: td-libvips-dev
 Version: %VERSION%%DEB_VERSION%
 Maintainer: Tada.team <info@tada.team>
-Architecture: all
+Architecture: amd64
 Section: devel
 Description: custom libvips build
 Conflicts: libvips-dev
