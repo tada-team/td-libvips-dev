@@ -1,4 +1,4 @@
-td-libvips-dev (%VERSION%); urgency=medium
+td-libvips-dev (8.10.5+1); urgency=medium
 
 * custom libvips build
 
