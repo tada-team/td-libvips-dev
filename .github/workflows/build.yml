@@ -3,7 +3,7 @@
 name: build
 env:
   version: '8.10.5'
-  debVersion: '+1'
+  debVersion: '+2'
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
           curl -L -o vips-${{env.version}}.tar.gz https://github.com/libvips/libvips/releases/download/v${{env.version}}/vips-${{env.version}}.tar.gz
           tar zvxf vips-${{env.version}}.tar.gz
           rm vips-${{env.version}}.tar.gz
-          cd vips-%VERSION%
+          cd vips-${{env.version}}
           CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" ./configure \
               --disable-debug \
               --disable-static \
