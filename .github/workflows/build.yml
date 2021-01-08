@@ -43,7 +43,6 @@ jobs:
               --without-python \
               --without-orc \
               --without-fftw
-          make
       - name: Build .deb
         run: |
           dest=td-libvips-dev_${{env.version}}${{env.debVersion}}

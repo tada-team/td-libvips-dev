@@ -2,6 +2,7 @@
 set -ex
 
 cd /usr/local/src/vips-%VERSION%
+make
 make install
 
 echo "Installed libvips $( PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig pkg-config --modversion vips )"
