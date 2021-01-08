@@ -26,6 +26,17 @@ jobs:
           cp -rv DEBIAN.template ${dest}/DEBIAN
           sed -i "s/%VERSION%/${{env.version}}/g" ${dest}/DEBIAN/*
           sed -i 's/%DEB_VERSION%/${{env.debVersion}}/g' ${dest}/DEBIAN/*
+      - name: Requirements
+        run: |
+          sudo apt-get install -y \
+            cmake \
+            giflib-tools \
+            gobject-introspection \
+            gtk-doc-tools \
+            libgif-dev \
+            libgsf-1-dev \
+            libpoppler-glib-dev \
+            libwebp-dev
       - name: Download lib
         run: |
           dest=td-libvips-dev_${{env.version}}${{env.debVersion}}
@@ -53,7 +64,6 @@ jobs:
         working-directory: dist
         run: |
           dest=td-libvips-dev_${{env.version}}${{env.debVersion}}
-          sudo apt-get install -y cmake giflib-tools gobject-introspection gtk-doc-tools libgif-dev libgsf-1-dev libpoppler-glib-dev libwebp-dev
           sudo dpkg -i ${dest}.deb
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.4.1
