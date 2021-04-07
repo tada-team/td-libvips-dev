@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
             crossbuild-essential-arm64 devscripts debhelper equivs
       
       sudo -u vagrant wget --no-verbose 'https://github.com/libvips/libvips/archive/refs/tags/v8.10.5.tar.gz' --output-document=vips_8.10.5.orig.tar.gz
-      sudo -u vagrant tar --auto-compress --create --file vips_8.10.5-3.debian.tar.xz ./debian
+      sudo -u vagrant tar --auto-compress --create --file vips_8.10.5-4.debian.tar.xz ./debian
 
       sha512sum --check ./sha512sums.txt
 

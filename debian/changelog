@@ -1,3 +1,9 @@
+vips (8.10.5-4) unstable; urgency=medium
+
+  * Package simplified
+
+ -- igo95862 <igo9586@yandex.ru>  Wed, 07 Apr 2021 19:55:16 +0100
+
 vips (8.10.5-3) unstable; urgency=medium
 
   * Package rework

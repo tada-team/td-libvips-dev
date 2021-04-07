@@ -19,38 +19,15 @@ Build-Depends: debhelper-compat (= 11),
  libwebp-dev,
  libxml2-dev,
  swig
-Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
-Standards-Version: 4.5.1
+Maintainer: igo95862 <igo95862@yandex.ru>
 Homepage: https://libvips.github.io/libvips/
 Rules-Requires-Root: no
-
-Package: td-libvips42
-Section: libs
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, libc6 (>= 2.14), libcairo2 (>= 1.2.4), libexif12 (>= 0.6.21-1~), libexpat1 (>= 2.0.1), libgcc1 (>= 1:3.0), libgif7 (>= 5.1), libglib2.0-0 (>= 2.39.91), libgsf-1-114 (>= 1.14.8), libjpeg8 (>= 8c), liblcms2-2 (>= 2.2+git20110628), libmagickcore-6.q16-3 (>= 8:6.9.6.8), libopenexr22, libpng16-16 (>= 1.6.2-1), libpoppler-glib8 (>= 0.22.1), librsvg2-2 (>= 2.32.0), libstdc++6 (>= 5.2), libtiff5 (>= 4.0.3), libwebp6 (>= 0.5.1), libwebpdemux2 (>= 0.5.1), libwebpmux3 (>= 0.6.1-2), zlib1g (>= 1:1.1.4)
-Provides: td-libvips
-Conflicts: libvips42
-Description: image processing system good for very large ones
- VIPS is an image processing system designed with efficiency in mind.
- It is good with large images (ones that larger than the amount of RAM in
- your machine), and for working with colour.  It can perform many
- image manipulation tasks much faster than other packages such as
- ImageMagick and the GIMP and includes some special features such as
- creating single "mosaic" images from multiple parts.
- .
- VIPS consists of two main components: an image processing library
- with some command-line tools and a spreadsheet-like graphical user
- interface.  The graphical interface is available in the nip2 package.
- .
- This package includes runtime libraries needed to run applications
- linked with the vips library.
 
 Package: td-libvips-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, td-libvips42 (= ${binary:Version}), 
+Multi-Arch: same
+Depends: ${misc:Depends}, 
  libexif-dev,
  libexpat1-dev,
  libgif-dev,
@@ -67,9 +44,7 @@ Depends: ${misc:Depends}, td-libvips42 (= ${binary:Version}),
  libwebp-dev,
  libxml2-dev,
  swig 
-Recommends: td-libvips-tools
-Conflicts: libvips-dev
-Suggests: nip2
+Conflicts: libvips42, libvips-dev, libvips-tools
 Description: image processing system good for very large ones (dev)
  VIPS is an image processing system designed with efficiency in mind.
  It is good with large images (ones that larger than the amount of RAM in
@@ -78,33 +53,6 @@ Description: image processing system good for very large ones (dev)
  ImageMagick and the GIMP and includes some special features such as
  creating single "mosaic" images from multiple parts.
  .
- VIPS consists of two main components: an image processing library
- with some command-line tools and a spreadsheet-like graphical user
- interface.  The graphical interface is available in the nip2 package.
- .
  This package includes all development files needed to compile
  applications that use the vips library.
-
-Package: td-libvips-tools
-Section: graphics
-Architecture: any
-Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}, python3
-Conflicts: libvips-tools
-Suggests: td-libvips-dev
-Description: image processing system good for very large ones (tools)
- VIPS is an image processing system designed with efficiency in mind.
- It is good with large images (ones that larger than the amount of RAM in
- your machine), and for working with colour.  It can perform many
- image manipulation tasks much faster than other packages such as
- ImageMagick and the GIMP and includes some special features such as
- creating single "mosaic" images from multiple parts.
- .
- VIPS consists of two main components: an image processing library
- with some command-line tools and a spreadsheet-like graphical user
- interface.  The graphical interface is available in the nip2 package.
- .
- This package includes several command-line utilities that make it
- possible to use some vips functionality from shell scripts or the
- command line.
 

@@ -46,9 +46,7 @@ override_dh_auto_test:
 	
 
 override_dh_auto_install:
-	dh_auto_install
-	perl $(CURDIR)/debian/scripts/create_missing_manual_pages
-	sed -i 's/python/python3/' $(CURDIR)/debian/tmp/usr/bin/vipsprofile
+	dh_auto_install --destdir debian/tmp
 
 %:
 	dh $@

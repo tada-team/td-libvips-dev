@@ -1,2 +1,4 @@
 usr/lib/*/libvips-cpp.la
 usr/lib/*/libvips.la
+usr/bin/*
+usr/share/man/man1
