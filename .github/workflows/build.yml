@@ -51,6 +51,9 @@ jobs:
         run: |
           cd ./build_amd64
           debuild --unsigned-source --unsigned-buildinfo --unsigned-changes
+      - name: Try install
+        run: |
+          sudo dpkg --install ./*amd64.deb
       - name: Install ARM64 dependencies
         run: |
           sudo apt install --yes $(cat ./arm64_dependencies.txt)
@@ -59,9 +62,6 @@ jobs:
           cd ./build_arm64
           debuild --host-arch arm64 \
             --unsigned-source --unsigned-buildinfo --unsigned-changes
-      - name: Try install
-        run: |
-          sudo dpkg --install ./*amd64.deb
       - name: Copy built packages
         run: |
           mkdir dist
