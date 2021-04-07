@@ -1,0 +1,57 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# Td build options
+CONFIGURE_EXTRA_FLAGS += \
+ --disable-debug \
+ --disable-static \
+ --disable-introspection \
+ --disable-dependency-tracking \
+ --without-python \
+ --without-orc \
+ --without-fftw \
+ --disable-gtk-doc \
+ --disable-gtk-doc-html
+
+# Enable all hardening options.
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+ifneq (, $(filter kfreebsd%, $(DEB_HOST_ARCH_OS)))
+CONFIGURE_EXTRA_FLAGS += --without-v4l
+endif
+
+ifneq (, $(filter ppc64el, $(DEB_HOST_ARCH)))
+CONFIGURE_EXTRA_FLAGS += --without-orc
+endif
+
+PYTHON3_VERSIONS = $(shell py3versions -r)
+
+override_dh_autoreconf:
+	gtkdocize --copy --docdir doc --flavour no-tmpl
+	glib-gettextize --force --copy > /dev/null
+	dh_autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+			   --enable-gtk-doc \
+			   $(CONFIGURE_EXTRA_FLAGS)
+
+# Remove tests. need libpng and skip on foreign arch
+override_dh_auto_test:
+	
+
+override_dh_auto_install:
+	dh_auto_install
+	perl $(CURDIR)/debian/scripts/create_missing_manual_pages
+	sed -i 's/python/python3/' $(CURDIR)/debian/tmp/usr/bin/vipsprofile
+
+%:
+	dh $@
+
+.PHONY: override_dh_autoreconf override_dh_auto_configure \
+	override_dh_auto_test override_dh_auto_install

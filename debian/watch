@@ -1,0 +1,3 @@
+version=3
+opts=uversionmangle=s/-([a-zA-Z]+)(\d+)$/~$1$2/ \
+https://github.com/libvips/libvips/releases .*/releases\/tag/v?(\d\S*)
