@@ -1,0 +1,45 @@
+Description: do not add timestamp when writing PPM with strip option
+Author: T. Lehmann, t.lehmann@mailbox.org
+Origin: https://github.com/libvips/libvips
+Bug: https://github.com/libvips/libvips/issues/1913
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: vips-8.10.5/libvips/foreign/ppmsave.c
+===================================================================
+--- vips-8.10.5.orig/libvips/foreign/ppmsave.c
++++ vips-8.10.5/libvips/foreign/ppmsave.c
+@@ -10,6 +10,8 @@
+  * 	- add ppmsave_target
+  * 20/11/20
+  * 	- byteswap on save, if necessary [ewelot]
++ * 2/12/20
++ * 	- don't add date with @strip [ewelot]
+  */
+ 
+ /*
+@@ -212,6 +214,8 @@ vips_foreign_save_ppm_block( VipsRegion
+ static int
+ vips_foreign_save_ppm( VipsForeignSavePpm *ppm, VipsImage *image )
+ {
++	VipsForeignSave *save = (VipsForeignSave *) ppm;
++
+ 	char *magic;
+ 	char *date;
+ 
+@@ -246,10 +250,12 @@ vips_foreign_save_ppm( VipsForeignSavePp
+ 		g_assert_not_reached();
+ 
+ 	vips_target_writef( ppm->target, "%s\n", magic );
+-	date = vips__get_iso8601();
+-	vips_target_writef( ppm->target, 
+-		"#vips2ppm - %s\n", date );
+-	g_free( date );
++	if( !save->strip ) {
++		date = vips__get_iso8601();
++		vips_target_writef( ppm->target, 
++			"#vips2ppm - %s\n", date );
++		g_free( date );
++	}
+ 	vips_target_writef( ppm->target, 
+ 		"%d %d\n", image->Xsize, image->Ysize );
+ 
