@@ -1,1 +1,1 @@
-pkg-config gtk-doc-tools giflib-tools:native gobject-introspection:native bc libexif-dev libexpat1-dev libgif-dev libgif7 libglib2.0-dev libgsf-1-dev libjpeg-dev liblcms2-dev libmagickcore-dev libpng-dev libpoppler-glib-dev libtiff5-dev libtool libwebp-dev libxml2-dev swig
+pkg-config gtk-doc-tools giflib-tools:native gobject-introspection:native bc libgcc1 libexif-dev libexpat1-dev libgif-dev libgif7 libglib2.0-dev libgsf-1-dev libjpeg-dev liblcms2-dev libmagickcore-dev libpng-dev libpoppler-glib-dev libtiff5-dev libtool libwebp-dev libxml2-dev swig
